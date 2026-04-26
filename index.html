@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>系统更新中...</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #0078d7; /* Win11 经典的蓝色 */
+            color: white;
+            font-family: "Segoe UI", Segoe, Tahoma, Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: none; /* 隐藏鼠标，增加真实感 */
+            overflow: hidden;
+        }
+
+        .container {
+            text-align: center;
+            max-width: 600px;
+        }
+
+        /* 旋转的圆圈动画 */
+        .loader {
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top: 4px solid white;
+            width: 50px;
+            height: 50px;
+            animation: spin 2s linear infinite;
+            margin: 0 auto 30px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        h1 { font-weight: 300; font-size: 2.5rem; margin-bottom: 10px; }
+        p { font-size: 1.2rem; margin: 5px 0; }
+    </style>
+</head>
+<body>
+    <div class="container" id="main">
+        <div class="loader"></div>
+        <h1>正在处理更新 <span id="percent">0</span>%</h1>
+        <p>请保持计算机开机。</p>
+        <p>这可能需要一段时间。</p>
+    </div>
+
+    <script>
+        let progress = 0;
+        const percentEl = document.getElementById('percent');
+
+        // 模拟缓慢的更新进度
+        const interval = setInterval(() => {
+            if (progress < 99) {
+                // 模拟真实更新：有时候快，有时候卡住
+                progress += Math.random() > 0.8 ? 1 : 0.1;
+                percentEl.innerText = Math.floor(progress);
+            }
+        }, 3000);
+
+        // 高级逃生功能
+        document.addEventListener('keydown', (e) => {
+            // 按下 ESC 键退出全屏并关闭提示（或跳转到百度/工作页面）
+            if (e.key === "Escape") {
+                window.location.href = "https://play9377.github.io/play-music/"; 
+            }
+            // 按下 F 键进入伪造的全屏模式
+            if (e.key === "f") {
+                document.documentElement.requestFullscreen();
+            }
+        });
+    </script>
+</body>
+</html>
